@@ -2,9 +2,11 @@
 
 namespace HRManagement.Models
 {
-	public class Employee
+	public class Employee : BaseEntity
 	{
-		public Department Department { get; set; }
+		public PersonalInfo PersonalInfo { get; set; }
+        public int PersonalInfoId { get; set; }
+        public Department Department { get; set; }
 		[ForeignKey("Department")]
 		public int DepartmentId { get; set; }
 		public Employee? Chief { get; set; }

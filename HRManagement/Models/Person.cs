@@ -1,6 +1,6 @@
 ﻿namespace HRManagement.Models
 {
-	public class Person : BaseEntity
+	public class PersonalInfo : BaseEntity
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

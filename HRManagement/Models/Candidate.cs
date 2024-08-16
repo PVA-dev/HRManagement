@@ -2,9 +2,11 @@
 
 namespace HRManagement.Models
 {
-	public class Candidate : Person
+	public class Candidate : BaseEntity
 	{
-		public Vacancy Vacancy { get; set; }
+        public PersonalInfo PersonalInfo { get; set; }
+        public int PersonalInfoId { get; set; }
+        public Vacancy Vacancy { get; set; }
 		[ForeignKey("Vacancy")]
 		public int VacancyId { get; set; }
 		public CandidateStatus Status { get; set; }
@@ -15,5 +17,6 @@ namespace HRManagement.Models
 		[ForeignKey("Employee")]
 		public int? ProbationChiefId { get; set; }
 		public int? ProbationSalary { get; set; }
+		public string ResumeURL { get; set; }
 	}
 }
