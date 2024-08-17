@@ -13,8 +13,9 @@ namespace HRManagement.Models
 		[ForeignKey("Employee")]
 		public int? ChiefEmployeeId { get; set; }
 		public DateTime DateStartWork { get; set; }
-		public DateTime DateDismissal { get; set; }
+		public DateTime? DateDismissal { get; set; }
 		public Position Position { get; set; }
+		[ForeignKey("Position")]
 		public int PositionId { get; set; }
 		public int Salary { get; set; }
 	}
