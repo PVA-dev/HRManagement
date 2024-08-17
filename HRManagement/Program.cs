@@ -14,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IPersonalInfoRepository, PersonalInfoRepository>();
+builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
