@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using HRManagement.Models;
+using Newtonsoft.Json;
 
-namespace HRManagement.Dto.Employee
+namespace HRManagement.Dto.EmployeeDtos
 {
     public class EmployeeDto
     {
