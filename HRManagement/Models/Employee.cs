@@ -1,9 +1,9 @@
-﻿using HRManagement.Dto;
+﻿using HRManagement.Dto.EmployeeDtos;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRManagement.Models
 {
-	public class Employee : BaseEntity
+    public class Employee : BaseEntity
 	{
 		public PersonalInfo PersonalInfo { get; set; }
 		public int PersonalInfoId { get; set; }

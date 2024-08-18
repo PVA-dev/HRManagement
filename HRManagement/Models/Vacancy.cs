@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using HRManagement.Dto.VacancyDtos;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRManagement.Models
 {
@@ -8,6 +9,7 @@ namespace HRManagement.Models
 		[ForeignKey("Position")]
 		public int PositionId { get; set; }
 		public DateTime DateCreated { get; set; }
+		public DateTime DateStatusUpdated { get; set; }
 		public DateTime? DateClosed { get; set; }
 		public Employee? HRManager { get; set; }
 		[ForeignKey("Employee")]
@@ -19,5 +21,12 @@ namespace HRManagement.Models
 		[ForeignKey("VacancyStatus")]
 		public int StatusId { get; set; }
 		public string Description { get; set; }
-	}
+
+        public void FillFromDto(VacancyDto vacancyCreateDto)
+        {
+            PositionId = vacancyCreateDto.PositionId;
+			DepartmentId = vacancyCreateDto.DepartmentId;
+			Description = vacancyCreateDto.Description;
+        }
+    }
 }

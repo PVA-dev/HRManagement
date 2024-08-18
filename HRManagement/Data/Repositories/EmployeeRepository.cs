@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRManagement.Data.Repositories
 {
-	public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
+    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
 	{
 		public EmployeeRepository(AppDbContext dbContext) : base(dbContext)
 		{
@@ -17,12 +17,12 @@ namespace HRManagement.Data.Repositories
 														&& x.PersonalInfo.PassportSeries == passportSeries);
 		}
 
-		public async Task<Employee?> GetIncludePersonalInfoById(int id)
+		public async Task<Employee?> GetIncludePersonalInfoByIdAsync(int id)
 		{
 			return await _dbContext.Employees.Include(pi => pi.PersonalInfo).FirstOrDefaultAsync(x => x.Id == id);
 		}
 
-		public async Task<List<Employee>> GetAllEmployeesIncludePersonalInfo()
+		public async Task<List<Employee>> GetAllEmployeesIncludePersonalInfoAsync()
 		{
 			return await _dbContext.Employees.Include(pi => pi.PersonalInfo).ToListAsync();
 		}
@@ -53,5 +53,12 @@ namespace HRManagement.Data.Repositories
 				return true;
 			}
 		}
-	}
+
+        public async Task<bool> HRManagerExistsAsync(int id)
+        {
+            return await _dbContext.Employees
+									.Include(x => x.Position)
+									.AnyAsync(x => x.Id == id && x.Position.Name == "HR менеджер");
+        }
+    }
 }

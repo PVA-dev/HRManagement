@@ -182,6 +182,103 @@ namespace HRManagement.Data
 				}
 
 				context.SaveChanges();
+
+				if (!context.Employees.Any())
+				{
+                    var mainChief = new Employee()
+                    {
+                        DateStartWork = new DateTime(2020, 2, 2),
+                        DepartmentId = context.Departments.First(x => x.Name == "Директорат").Id,
+                        PositionId = context.Positions.First(x => x.Name == "Директор").Id,
+                        Salary = 500000,
+                        PersonalInfo = new PersonalInfo()
+                        {
+                            DateOfBirth = new DateTime(1986, 12, 12),
+                            Address = "ул. Пушкина д. 1",
+                            Email = "myemail1@mail.ru",
+                            FirstName = "Иван",
+                            LastName = "Иванов",
+                            Patronymic = "Иванович",
+                            PassportNumber = "11111111111",
+                            PassportSeries = "7505",
+                            Phone = "89213333311"
+                        }
+                    };
+
+                    context.Employees.Add(mainChief);
+                    context.SaveChanges();
+
+                    var hrChief = new Employee()
+					{
+						ChiefId = mainChief.Id,
+						DateStartWork = new DateTime(2020, 1, 1),
+						DepartmentId = context.Departments.First(x => x.Name == "Отдел HR").Id,
+						PositionId = context.Positions.First(x => x.Name == "Начальник отдела HR").Id,
+						Salary = 120000,
+						PersonalInfo = new PersonalInfo()
+						{
+							DateOfBirth = new DateTime(1986, 1, 1),
+							Address = "ул. Пушкина д. 2",
+							Email = "myemail2@mail.ru",
+							FirstName = "Семен",
+							LastName = "Семенов",
+							Patronymic = "Семенович",
+							PassportNumber = "11111111112",
+							PassportSeries = "7515",
+							Phone = "89213333312"
+						}
+					};
+
+                    context.Employees.Add(hrChief);
+                    context.SaveChanges();
+
+                    var hrManager = new Employee()
+                    {
+                        ChiefId = hrChief.Id,
+                        DateStartWork = new DateTime(2020, 1, 1),
+                        DepartmentId = context.Departments.First(x => x.Name == "Отдел HR").Id,
+                        PositionId = context.Positions.First(x => x.Name == "HR менеджер").Id,
+                        Salary = 80000,
+                        PersonalInfo = new PersonalInfo()
+                        {
+                            DateOfBirth = new DateTime(1986, 3, 3),
+                            Address = "ул. Пушкина д. 3",
+                            Email = "myemail3@mail.ru",
+                            FirstName = "Мария",
+                            LastName = "Семенова",
+                            Patronymic = "Семеновна",
+                            PassportNumber = "11111111113",
+                            PassportSeries = "7535",
+                            Phone = "89213333313"
+                        }
+                    };
+
+                    context.Employees.Add(hrManager);
+
+                    var hrManager1 = new Employee()
+                    {
+                        ChiefId = hrChief.Id,
+                        DateStartWork = new DateTime(2020, 5, 5),
+                        DepartmentId = context.Departments.First(x => x.Name == "Отдел HR").Id,
+                        PositionId = context.Positions.First(x => x.Name == "HR менеджер").Id,
+                        Salary = 80000,
+                        PersonalInfo = new PersonalInfo()
+                        {
+                            DateOfBirth = new DateTime(1986, 5, 5),
+                            Address = "ул. Пушкина д. 4",
+                            Email = "myemail4@mail.ru",
+                            FirstName = "Елена",
+                            LastName = "Петрова",
+                            Patronymic = "Семеновна",
+                            PassportNumber = "11111111113",
+                            PassportSeries = "7555",
+                            Phone = "89213333314"
+                        }
+                    };
+
+					context.Employees.Add(hrManager1);
+					context.SaveChanges();
+                }
 			}
 		}
 	}

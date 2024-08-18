@@ -19,5 +19,15 @@ namespace HRManagement.Data.Repositories
 									.Include(x => x.Department)
 									.ToListAsync();
 		}
-	}
+
+        public async Task<Vacancy?> GetVacanciyFullInfoByIdAsync(int id)
+        {
+            return await _dbContext.Vacancies
+                                    .Include(x => x.Status)
+                                    .Include(x => x.HRManager).ThenInclude(c => c.PersonalInfo)
+                                    .Include(x => x.Position)
+                                    .Include(x => x.Department)
+                                    .FirstOrDefaultAsync(x => x.Id == id);
+        }
+    }
 }

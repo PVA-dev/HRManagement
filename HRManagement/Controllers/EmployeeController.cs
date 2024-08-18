@@ -1,11 +1,11 @@
 ﻿using HRManagement.Data.Interfaces;
-using HRManagement.Dto;
+using HRManagement.Dto.EmployeeDtos;
 using HRManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRManagement.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class EmployeeController : ControllerBase
 	{
@@ -42,7 +42,7 @@ namespace HRManagement.Controllers
 		[HttpGet("{id}")]
 		public async Task<IActionResult> Get(int id)
 		{
-			var employee = await _employeeRepository.GetIncludePersonalInfoById(id);
+			var employee = await _employeeRepository.GetIncludePersonalInfoByIdAsync(id);
 
 			if (employee == null)
 			{
@@ -57,7 +57,7 @@ namespace HRManagement.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var employees = await _employeeRepository.GetAllEmployeesIncludePersonalInfo();
+			var employees = await _employeeRepository.GetAllEmployeesIncludePersonalInfoAsync();
 			var employeesDto = new List<EmployeeDto>();
 
 			employeesDto.AddRange(employees.Select(x =>
@@ -73,11 +73,11 @@ namespace HRManagement.Controllers
 		[HttpPut("{id}")]
 		public async Task<IActionResult> Update(int id, [FromBody]EmployeeDto employeeDto)
 		{
-			var employee = await _employeeRepository.GetIncludePersonalInfoById(id);
+			var employee = await _employeeRepository.GetIncludePersonalInfoByIdAsync(id);
 
 			if (employee == null)
 			{
-				return BadRequest("Сотрудник с таким Id не найден");
+				return NotFound("Сотрудник с таким Id не найден");
 			}
 
 			employee.FillFromDto(employeeDto);
