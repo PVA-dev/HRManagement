@@ -18,5 +18,6 @@ namespace HRManagement.Models
 		public VacancyStatus Status { get; set; }
 		[ForeignKey("VacancyStatus")]
 		public int StatusId { get; set; }
+		public string Description { get; set; }
 	}
 }
