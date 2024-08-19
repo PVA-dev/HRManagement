@@ -31,7 +31,7 @@ namespace HRManagement.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var vacancies = await _vacancyRepository.GetAllVacanciesFullInfoAsync();
+			var vacancies = await _vacancyRepository.GetAllFullInfoAsync();
 			var vacanciesDto = new List<VacancyGetDto>();
 
 			vacanciesDto.AddRange(vacancies.Select(x =>
@@ -47,7 +47,7 @@ namespace HRManagement.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var vacancy = await _vacancyRepository.GetVacanciyFullInfoByIdAsync(id);
+            var vacancy = await _vacancyRepository.GetFullInfoByIdAsync(id);
 
             if (vacancy == null)
             {

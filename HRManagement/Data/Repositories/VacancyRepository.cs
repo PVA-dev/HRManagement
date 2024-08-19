@@ -10,7 +10,7 @@ namespace HRManagement.Data.Repositories
 		{
 		}
 
-		public async Task<List<Vacancy>> GetAllVacanciesFullInfoAsync()
+		public async Task<List<Vacancy>> GetAllFullInfoAsync()
 		{
 			return await _dbContext.Vacancies
 									.Include(x => x.Status)
@@ -20,7 +20,7 @@ namespace HRManagement.Data.Repositories
 									.ToListAsync();
 		}
 
-        public async Task<Vacancy?> GetVacanciyFullInfoByIdAsync(int id)
+        public async Task<Vacancy?> GetFullInfoByIdAsync(int id)
         {
             return await _dbContext.Vacancies
                                     .Include(x => x.Status)

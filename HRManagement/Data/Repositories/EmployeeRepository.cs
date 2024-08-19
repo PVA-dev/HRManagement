@@ -33,16 +33,17 @@ namespace HRManagement.Data.Repositories
 			{
 				try
 				{
-					var personalInfo = await _dbContext.PersonalInfos.FirstOrDefaultAsync(x => x.Id == employee.PersonalInfoId);
+                    _dbContext.Employees.Remove(employee);
+                    //await SaveAsync();
+
+                    var personalInfo = await _dbContext.PersonalInfos.FirstOrDefaultAsync(x => x.Id == employee.PersonalInfoId);
 					if (personalInfo != null)
 					{
 						_dbContext.PersonalInfos.Remove(personalInfo);
 					}
+                    await SaveAsync();
 
-					_dbContext.Employees.Remove(employee);
-					await SaveAsync();
-
-					await transaction.CommitAsync();
+                    await transaction.CommitAsync();
 				}
 				catch (Exception)
 				{
